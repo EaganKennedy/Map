@@ -2,7 +2,11 @@ package immutable;
 
 import java.util.List;
 
-public class EmptyNode implements Map{
+public class EmptyNode extends Map {
+
+    public static final EmptyNode INSTANCE = new EmptyNode();
+
+    private EmptyNode() {}
     @Override
     public int size() {
         return 0;
@@ -13,18 +17,18 @@ public class EmptyNode implements Map{
     }
     @Override
     public boolean empty() {
-        return false;
+        return true;
     }
     @Override
     public Map setValue(Object key, Object value) {
-        return null;
+        return new Node(key, value, EmptyNode.INSTANCE, EmptyNode.INSTANCE);
     }
     @Override
     public Object getValue(Object key) {
         return null;
     }
     @Override
-    public List<Entry> getEntries() {
-        return List.of();
+    protected void addEntries(List<Entry> list) {
+
     }
 }

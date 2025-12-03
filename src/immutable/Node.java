@@ -2,7 +2,11 @@ package immutable;
 
 import java.util.List;
 
-public class Node implements Map{
+public class Node extends Map {
+
+    public Node(Object key, Object value, Map left, Map right) {
+
+    }
     @Override
     public int size() {
         return 0;
@@ -24,7 +28,6 @@ public class Node implements Map{
         return null;
     }
     @Override
-    public List<Entry> getEntries() {
-        return List.of();
+    protected void addEntries(List<Entry> list) {
     }
 }

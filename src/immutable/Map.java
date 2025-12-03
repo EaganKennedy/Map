@@ -2,13 +2,13 @@ package immutable;
 
 import java.util.List;
 
-public interface Map {
-    public interface Entry{
-        public Object getKey();
-        public Object getValue();
+public abstract class Map {
+    interface Entry{
+         Object getKey();
+         Object getValue();
     }
 
-    public static Map create(){
+     static Map create(){
         return null;
     }
 
@@ -17,6 +17,5 @@ public interface Map {
     public abstract boolean empty();
     public abstract Map setValue(Object key, Object value);
     public abstract Object getValue(Object key);
-    public List<Entry> getEntries();
-    //move to implement when possible. protected abstract void addEntries()
+    protected abstract void addEntries(List<Entry> list);
 }
