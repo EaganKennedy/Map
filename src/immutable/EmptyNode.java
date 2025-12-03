@@ -2,11 +2,13 @@ package immutable;
 
 import java.util.List;
 
-public class EmptyNode extends Map {
+public class EmptyNode<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
 
-    public static final EmptyNode INSTANCE = new EmptyNode();
+    @SuppressWarnings("rawtypes")
+    public static final EmptyNode INSTANCE = new EmptyNode<>();
 
-    private EmptyNode() {}
+    private EmptyNode() {
+    }
     @Override
     public int size() {
         return 0;
@@ -20,11 +22,11 @@ public class EmptyNode extends Map {
         return true;
     }
     @Override
-    public Map setValue(Object key, Object value) {
+    public Map<Key, Value> setValue(Key key, Value value) {
         return new Node(key, value, EmptyNode.INSTANCE, EmptyNode.INSTANCE);
     }
     @Override
-    public Object getValue(Object key) {
+    public Object getValue(Key key) {
         return null;
     }
     @Override
