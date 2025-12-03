@@ -31,6 +31,5 @@ public class EmptyNode<Key extends Comparable<Key>, Value> extends Map<Key, Valu
     }
     @Override
     protected void addEntries(List<Entry> list) {
-
     }
 }

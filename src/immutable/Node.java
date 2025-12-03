@@ -16,7 +16,7 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
     }
     @Override
     public int size() {
-        return right.size() + left.size();
+        return right.size() + left.size() + 1;
     }
     @Override
     public int depth() {
@@ -28,7 +28,7 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
     }
     @Override
     public Map<Key, Value> setValue(Key key, Value value) {
-        return new Node<>(key, value, EmptyNode.INSTANCE, EmptyNode.INSTANCE);
+        return new Node<>(key, value, left, right);
     }
     @Override
     public Object getValue(Key key) {
@@ -50,5 +50,8 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
     }
     @Override
     protected void addEntries(List<Entry> list) {
+        left.addEntries(list);
+
+        right.addEntries(list);
     }
 }
