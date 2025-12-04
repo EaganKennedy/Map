@@ -18,5 +18,5 @@ public abstract class Map<Key extends Comparable<Key>, Value> {
     public abstract boolean empty();
     public abstract Map<Key, Value> setValue(Key key, Value value);
     public abstract Object getValue(Key key);
-    protected abstract void addEntries(List<Entry> list);
+    public abstract void addEntries(List<Entry> list);
 }

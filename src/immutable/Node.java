@@ -20,7 +20,7 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> im
     }
     @Override
     public int depth() {
-        return Math.max(left.depth(), right.depth());
+        return Math.max(left.depth(), right.depth()) + 1;
     }
     @Override
     public boolean empty() {
@@ -29,17 +29,17 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> im
     @Override
     public Map<Key, Value> setValue(Key key, Value value) {
         int check = this.key.compareTo(key);
-         if(check < 0){
-            right.setValue(key, value);
+         if(check > 0){
+            Map<Key, Value> newLeft = left.setValue(key, value);
+            return new Node<>(this.key, this.value, newLeft, right);
          }
-         else if (check > 0){
-            left.setValue(key, value);
+         else if (check < 0){
+            Map<Key, Value> newRight = right.setValue(key, value);
+            return new Node<>(this.key, this.value, left, newRight);
          }
          else {
-            return new Node<>(key, value, left, right);
+            return new Node<>(this.key, value, left, right);
          }
-
-        return null;
     }
     @Override
     public Object getValue(Key key) {
@@ -60,7 +60,7 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> im
         }
     }
     @Override
-    protected void addEntries(List<Entry> list) {
+    public void addEntries(List<Entry> list) {
         left.addEntries(list);
         list.add(this);
         right.addEntries(list);
