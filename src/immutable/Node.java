@@ -30,10 +30,10 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> im
     public Map<Key, Value> setValue(Key key, Value value) {
         int check = this.key.compareTo(key);
          if(check < 0){
-            left.setValue(key, value);
+            right.setValue(key, value);
          }
          else if (check > 0){
-            right.setValue(key, value);
+            left.setValue(key, value);
          }
          else {
             return new Node<>(key, value, left, right);
