@@ -22,8 +22,9 @@ public class EmptyNode<Key extends Comparable<Key>, Value> extends Map<Key, Valu
         return true;
     }
     @Override
+    @SuppressWarnings("unchecked")
     public Map<Key, Value> setValue(Key key, Value value) {
-        return new Node(key, value, EmptyNode.INSTANCE, EmptyNode.INSTANCE);
+        return new Node<Key, Value>(key, value, EmptyNode.INSTANCE, EmptyNode.INSTANCE);
     }
     @Override
     public Object getValue(Key key) {

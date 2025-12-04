@@ -2,7 +2,7 @@ package immutable;
 
 import java.util.List;
 
-public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
+public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> implements Map.Entry {
     private final Key key;
     private final Value value;
     private final Map<Key, Value> left;
@@ -28,7 +28,18 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
     }
     @Override
     public Map<Key, Value> setValue(Key key, Value value) {
-        return new Node<>(key, value, left, right);
+        int check = this.key.compareTo(key);
+         if(check < 0){
+            left.setValue(key, value);
+         }
+         else if (check > 0){
+            right.setValue(key, value);
+         }
+         else {
+            return new Node<>(key, value, left, right);
+         }
+
+        return null;
     }
     @Override
     public Object getValue(Key key) {
@@ -51,7 +62,16 @@ public class Node<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
     @Override
     protected void addEntries(List<Entry> list) {
         left.addEntries(list);
-
+        list.add(this);
         right.addEntries(list);
+    }
+
+    @Override
+    public Object getKey() {
+        return key;
+    }
+    @Override
+    public Object getValue() {
+        return value;
     }
 }

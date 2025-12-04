@@ -8,22 +8,9 @@ public abstract class Map<Key extends Comparable<Key>, Value> {
          Object getValue();
     }
 
-    private class EntryValue implements Entry{
-        private Object key;
-        private Object value;
-
-        @Override
-        public Object getKey() {
-            return key;
-        }
-        @Override
-        public Object getValue() {
-            return value;
-        }
-    }
-
-     static Map create(){
-        return null;
+    @SuppressWarnings("rawtypes")
+    public static Map create(){
+        return EmptyNode.INSTANCE;
     }
 
     public abstract int size();
